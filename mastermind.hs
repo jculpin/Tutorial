@@ -52,9 +52,7 @@ mkguess word secret n =
             do  putStrLn "Enter your guess (select four letters from A to F):"
                 q <- getLine
                 let corrects = checkTrues(checkExact secret q)
-                let cols = correctColours 'A' secret q + correctColours 'B' secret q +
-                           correctColours 'C' secret q + correctColours 'D' secret q +
-                           correctColours 'E' secret q + correctColours 'F' secret q
+                let cols = sum (map (\x -> correctColours x secret q) ['A'..'F'])
                 let cols' = cols - corrects                
                 putStr ("Exact guesses: ") 
                 print corrects
