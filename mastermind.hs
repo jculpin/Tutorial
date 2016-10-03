@@ -59,9 +59,8 @@ mkguess word secret n =
                 putStr ( "Correct letters:")
                 print cols'
                 putStr ("Guesses left:")
-                let n' = n - 1
-                print n'
-                turn q secret n'
+                print (n - 1)
+                turn q secret (n-1)
 
 mastermind :: IO ()
 mastermind = do 
