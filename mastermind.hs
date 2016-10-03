@@ -23,8 +23,6 @@ secretWord  = do
                 r4 <- rollDice
                 return [r1,r2,r3,r4]                 
 
-sortWord word = sort word 
-
 checkTrues l = length(filter (== True) l)
 
 countColours :: Char -> String -> Int
