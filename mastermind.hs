@@ -3,7 +3,7 @@
 import Data.List 
 import System.Random
 
---rollDice :: IO Int
+rollDice :: IO Char
 rollDice = getStdRandom (randomR ('A','F'))
                                
 exactMatch :: String -> String -> [(Char,Char)]
@@ -15,7 +15,7 @@ matchLetters (x,y) = if x==y then True else False
 checkExact :: String -> String -> [Bool]
 checkExact word1 word2 = map matchLetters (exactMatch word1 word2)
 
---secretWord :: [Char]
+secretWord :: IO [Char]
 secretWord  = do
                 r1 <- rollDice
                 r2 <- rollDice
@@ -23,6 +23,7 @@ secretWord  = do
                 r4 <- rollDice
                 return [r1,r2,r3,r4]                 
 
+checkTrues :: [Bool] -> Int
 checkTrues l = length(filter (== True) l)
 
 countColours :: Char -> String -> Int
