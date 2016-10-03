@@ -51,13 +51,10 @@ mkguess :: String -> String -> Int -> IO ()
 mkguess word secret n =
             do  putStrLn "Enter your guess (select four letters from A to F):"
                 q <- getLine
-                let corrects = checkTrues(checkExact secret q)
-                let cols = sum (map (\x -> correctColours x secret q) ['A'..'F'])
-                let cols' = cols - corrects                
                 putStr ("Exact guesses: ") 
-                print corrects
+                print (checkTrues(checkExact secret q))
                 putStr ( "Correct letters:")
-                print cols'
+                print (sum (map (\x -> correctColours x secret q) ['A'..'F']) - checkTrues(checkExact secret q))
                 putStr ("Guesses left:")
                 print (n - 1)
                 turn q secret (n-1)
@@ -65,4 +62,4 @@ mkguess word secret n =
 mastermind :: IO ()
 mastermind = do 
              secret <- secretWord
-             turn "" secret 10                
+             turn "" secret 10  
